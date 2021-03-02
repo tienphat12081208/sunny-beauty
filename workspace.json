@@ -1,10 +1,173 @@
 {
-  
-  
   "version": 2,
-  
-  "projects": {},
-  "cli": {
-    "defaultCollection": "@nrwl/workspace"
+  "cli": { "defaultCollection": "@nrwl/react" },
+  "defaultProject": "sunny-beauty",
+  "generators": {
+    "@nrwl/react": {
+      "application": { "style": "scss", "linter": "eslint", "babel": true },
+      "component": { "style": "scss" },
+      "library": { "style": "scss", "linter": "eslint" }
+    }
+  },
+  "projects": {
+    "sunny-beauty": {
+      "root": "apps/sunny-beauty",
+      "sourceRoot": "apps/sunny-beauty/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/sunny-beauty",
+            "index": "apps/sunny-beauty/src/index.html",
+            "main": "apps/sunny-beauty/src/main.tsx",
+            "polyfills": "apps/sunny-beauty/src/polyfills.ts",
+            "tsConfig": "apps/sunny-beauty/tsconfig.app.json",
+            "assets": [
+              "apps/sunny-beauty/src/favicon.ico",
+              "apps/sunny-beauty/src/assets"
+            ],
+            "styles": ["apps/sunny-beauty/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/sunny-beauty/src/environments/environment.ts",
+                  "with": "apps/sunny-beauty/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": { "buildTarget": "sunny-beauty:build" },
+          "configurations": {
+            "production": { "buildTarget": "sunny-beauty:build:production" }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/sunny-beauty/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/sunny-beauty"],
+          "options": {
+            "jestConfig": "apps/sunny-beauty/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-sunny-beauty": {
+      "root": "apps/api-sunny-beauty",
+      "sourceRoot": "apps/api-sunny-beauty/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/api-sunny-beauty",
+            "index": "apps/api-sunny-beauty/src/index.html",
+            "main": "apps/api-sunny-beauty/src/main.js",
+            "polyfills": "apps/api-sunny-beauty/src/polyfills.js",
+            "tsConfig": "apps/api-sunny-beauty/tsconfig.app.json",
+            "assets": [
+              "apps/api-sunny-beauty/src/favicon.ico",
+              "apps/api-sunny-beauty/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/api-sunny-beauty/src/environments/environment.js",
+                  "with": "apps/api-sunny-beauty/src/environments/environment.prod.js"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": { "buildTarget": "api-sunny-beauty:build" },
+          "configurations": {
+            "production": { "buildTarget": "api-sunny-beauty:build:production" }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/api-sunny-beauty/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/api-sunny-beauty"],
+          "options": {
+            "jestConfig": "apps/api-sunny-beauty/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "share": {
+      "root": "libs/share",
+      "sourceRoot": "libs/share/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/share/**/*.{ts,tsx,js,jsx}"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/share"],
+          "options": {
+            "jestConfig": "libs/share/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
   }
 }
