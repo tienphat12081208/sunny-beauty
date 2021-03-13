@@ -17,10 +17,6 @@
   },
   "projects": {
     "sunny-beauty": { "tags": [] },
-    "sunny-beauty-e2e": {
-      "tags": [],
-      "implicitDependencies": ["sunny-beauty"]
-    },
     "api-sunny-beauty": { "tags": [] },
     "share": { "tags": [] }
   }
